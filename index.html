@@ -952,8 +952,42 @@ font-size:.75rem;
 
 <!-- ================================================
      PLAYER
-================================================= -->
 
+================================================= -->
+<div class="music-player" id="musicPlayer">
+
+    <button class="music-button" id="musicButton">
+        ▶
+    </button>
+</div> 
+    <div class="player-info">
+
+        <span id="musicText">
+            Só com você
+        </span>
+
+        <input
+            type="range"
+            id="progressBar"
+            min="0"
+            max="100"
+            value="0">
+
+        <div class="time">
+            <span id="currentTime">0:00</span>
+            <span id="duration">0:00</span>
+        </div>
+
+    </div>
+
+    <input
+        class="volume"
+        id="volumeControl"
+        type="range"
+        min="0"
+        max="1"
+        step="0.01"
+        value="0.5">
 
     
     <!-- Overlay de loading -->
