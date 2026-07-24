@@ -932,12 +932,14 @@
 
     <script>
     const audio = document.getElementById("backgroundMusic");
-const volume = document.getElementById("volumeControl"); 
+const button = document.getElementById("musicButton");
 
-audio.volume = 0.5;
-
-volume.addEventListener("input", function () {
-    audio.volume = this.value;
+button.addEventListener("click", () => {
+    if (audio.paused) {
+        audio.play();
+    } else {
+        audio.pause();
+    }
 });
     
     </script>
