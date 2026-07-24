@@ -4,38 +4,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Para Minha Princesa ❤️</title>
-<link rel="stylesheet" href="styles.css">
-  </head>
-  <body>
-    <!-- Áudio (reprodução controlada por botão para contornar bloqueios de autoplay) -->
-    <audio id="backgroundMusic" controls autoplay loop preload="auto">
-    <source src="Só.mp3" type="audio/mpeg">
-    Seu navegador não suporta áudio.
-</audio>
-
-<button id="musicButton" class="music-button" aria-pressed="false" aria-label="Tocar música">
-    🎶 Toque para ouvir nossa música
-</button>
-
-  <!-- Controle de volume -->
-<div style="position: fixed; bottom: 10px; right: 10px; background: rgba(255,255,255,0.8); padding: 5px; border-radius: 5px; z-index:10001;">
-    <label for="volumeControl">Volume:</label>
-    <input type="range" id="volumeControl" min="0" max="1" step="0.01" value="0.5">
-</div>
-
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles2.css">
+</head>
+    
     <!-- Overlay de loading -->
     <div class="loading-overlay">
         <div class="loading-heart">❤️</div>
     </div>
 
     <!-- Cursor personalizado -->
-    <div class="custom-cursor" aria-hidden="true"></div>
+    <div class="custom-cursor"></div>
 
     <!-- Partículas de fundo -->
-    <div class="particles" aria-hidden="true"></div>
+    <div class="particles"></div>
     
     <!-- Efeito de ondas -->
-    <div class="wave-bg" aria-hidden="true"></div>
+    <div class="wave-bg"></div>
 
     <div class="container">
         <header class="header">
@@ -46,21 +31,21 @@
         <main class="love-card">
             <h2>Minha Constante em um Universo de variaveis 💕</h2>
             <div class="love-message">
-                <p><span class="girlfriend-name"></span>, Você é a razão pela qual o meu primeiro pensamento ao despertar vem acompanhado de um sorriso e o último pensamento que repousa em meu[...]</p>
+                <p><span class="girlfriend-name"></span>, Você é a razão pela qual o meu primeiro pensamento ao despertar vem acompanhado de um sorriso e o último pensamento que repousa em meu coração antes de eu dormir é você. Entre o começo e o fim dos meus dias, existe você, presente nos meus pensamentos, nas minhas orações e em tudo aquilo que faz o meu coração sorrir.
 
-<p>Desde que você chegou à minha vida, tudo ganhou novas cores. As coisas simples se tornaram mais doces, os dias mais bonitos e a minha existência mais completa. Você não apenas passou a fazer [...]</p>
+Desde que você chegou à minha vida, tudo ganhou novas cores. As coisas simples se tornaram mais doces, os dias mais bonitos e a minha existência mais completa. Você não apenas passou a fazer parte da minha vida; você transformou a maneira como eu a vivo.
 
-<p>Uma conversa com você permanece comigo muito depois de terminar. Uma mensagem sua é capaz de mudar completamente o meu dia. Uma lembrança sua surge no meio da rotina e transforma um instante co[...]</p>
+Uma conversa com você permanece comigo muito depois de terminar. Uma mensagem sua é capaz de mudar completamente o meu dia. Uma lembrança sua surge no meio da rotina e transforma um instante comum em um momento especial. Você está presente em mim de uma maneira que nenhuma distância, ocupação ou passagem de tempo consegue apagar.
 
-<p>E por tudo isso, eu agradeço a Deus. Agradeço porque Ele me permitiu encontrar você, conhecer o seu coração e viver um amor que me ensina, me alegra e me aproxima ainda mais da beleza de Seus[...]</p>
+E por tudo isso, eu agradeço a Deus. Agradeço porque Ele me permitiu encontrar você, conhecer o seu coração e viver um amor que me ensina, me alegra e me aproxima ainda mais da beleza de Seus propósitos.
 
-<p>Você é uma bênção que eu reconheço todos os dias. É uma das razões pelas quais eu sorrio ao acordar, uma das certezas que tornam o meu futuro mais bonito e uma das maiores dádivas pelas q[...]</p>
+Você é uma bênção que eu reconheço todos os dias. É uma das razões pelas quais eu sorrio ao acordar, uma das certezas que tornam o meu futuro mais bonito e uma das maiores dádivas pelas quais eu agradeço a Deus.
 
-<p>Você chegou à minha vida e a transformou. Desde então, os meus dias têm mais cor, o meu coração tem mais alegria e o meu futuro tem o seu nome entre os sonhos que eu mais desejo viver.</p>
+Você chegou à minha vida e a transformou. Desde então, os meus dias têm mais cor, o meu coração tem mais alegria e o meu futuro tem o seu nome entre os sonhos que eu mais desejo viver.
 
-<p>Você é parte da minha felicidade, das minhas orações, dos meus planos e da minha gratidão. E, enquanto Deus permitir que eu caminhe ao seu lado, eu continuarei agradecendo por ter você na mi[...]</p>
+Você é parte da minha felicidade, das minhas orações, dos meus planos e da minha gratidão. E, enquanto Deus permitir que eu caminhe ao seu lado, eu continuarei agradecendo por ter você na minha vida. 🤍</p>
                 <br>
-                <p>Você é minha melodia favorita, meu porto seguro, minha inspiração diária. Com você descobri que o amor verdadeiro não é apenas um sentimento, é um lar, é paz, é renun[...]</p>
+                <p>Você é minha melodia favorita, meu porto seguro, minha inspiração diária. Com você descobri que o amor verdadeiro não é apenas um sentimento, é um lar, é paz, é renuncia, é sacrificios, é escolhas, é a certeza de que encontrei minha pessoa, minha alma para sempre! ❤️</p>
             </div>
 
             <button class="surprise-btn" onclick="showSurprise()">
@@ -69,9 +54,9 @@
 
             <div class="special-message" id="specialMessage">
                 <h3>💖 Do Fundo Do Meu Coração 💖</h3>
-                <p><span class="girlfriend-name"></span>, você é o presente mais lindo que a vida me deu. Cada sorriso seu ilumina meu mundo, cada abraço seu me faz sentir em casa, cada "eu te [...]"</p>
+                <p><span class="girlfriend-name"></span>, você é o presente mais lindo que a vida me deu. Cada sorriso seu ilumina meu mundo, cada abraço seu me faz sentir em casa, cada "eu te amo" seu é música para minha alma.</p>
                 <br>
-                <p>Obrigada por ser minha companheira de sonhos, minha parceira de vida, minha melhor amiga e meu grande amor. Nesses nossos 3 meses, quero que saiba: você é tudo que sempre sonh[...]</p>
+                <p>Obrigada por ser minha companheira de sonhos, minha parceira de vida, minha melhor amiga e meu grande amor. Nesses nossos 3 meses, quero que saiba: você é tudo que sempre sonhei e muito mais! 💝</p>
             </div>
         </main>
 
@@ -98,10 +83,13 @@
 
         <footer class="footer">
             <p>Criado com todo <span class="heart-beat">❤️</span> que recebo de Deus</p>
-            <p>Para você! <span class="girlfriend-name"></span> a unica digna, preciosa, linda, maravilhosa, deslubrate, cheirosa, inteligente, esforçada, sempre certa e exclusiva do meu mundo![...]</p>
+            <p>Para você! <span class="girlfriend-name"></span> a unica digna, preciosa, linda, maravilhosa, deslubrate, cheirosa, inteligente, esforçada, sempre certa e exclusiva do meu mundo! 💫</p>
             <p>FELIZ NOSSO DIA, MY LOVE! 💑</p>
         </footer>
     </div>
-    <script src="script.js"></script>
-  </body>
-  </html>
+                
+                <script src="script.js"></script>
+                <script src="script2.js"></script>
+       
+</body>
+</html>
