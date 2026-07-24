@@ -920,11 +920,30 @@
             bottom: 10px;
 
         }
+        .player-info{
+    display:flex;
+    flex-direction:column;
+    width:220px;
+    gap:6px;
+}
+
+#progressBar{
+    width:100%;
+    accent-color:var(--red);
+    cursor:pointer;
+}
+
+.time{
+    display:flex;
+    justify-content:space-between;
+    color:#bbb;
+    font-size:.75rem;
+            }
     </style>
     
 </head>
 
-    <audio id="backgroundMusic" controls loop preload="auto">
+    <audio id="backgroundMusic" loop preload="auto" hidden>
 
     <source src="Vini Nominato - Só com você (Áudio Oficial)(MP3_160K).mp3" type="audio/mpeg">
 
@@ -932,15 +951,74 @@
 
     <script>
     const audio = document.getElementById("backgroundMusic");
-const button = document.getElementById("musicButton");
 
-button.addEventListener("click", () => {
-    if (audio.paused) {
+const playBtn = document.getElementById("musicButton");
+const progress = document.getElementById("progressBar");
+const current = document.getElementById("currentTime");
+const duration = document.getElementById("duration");
+const volume = document.getElementById("volumeControl");
+
+audio.volume = 0.5;
+
+// Play e Pause
+playBtn.onclick = () => {
+
+    if(audio.paused){
         audio.play();
-    } else {
+    }else{
         audio.pause();
     }
-});
+
+};
+
+// Atualiza botão
+audio.onplay = ()=>{
+    playBtn.innerHTML="⏸";
+}
+
+audio.onpause = ()=>{
+    playBtn.innerHTML="▶";
+}
+
+// Duração
+audio.onloadedmetadata = ()=>{
+    duration.textContent = format(audio.duration);
+}
+
+// Barra de progresso
+audio.ontimeupdate = ()=>{
+
+    progress.value = (audio.currentTime/audio.duration)*100;
+
+    current.textContent = format(audio.currentTime);
+
+}
+
+// Arrastar barra
+progress.oninput = ()=>{
+
+    audio.currentTime =
+        progress.value/100*audio.duration;
+
+}
+
+// Volume
+volume.oninput = ()=>{
+
+    audio.volume = volume.value;
+
+}
+
+// Formatar tempo
+function format(sec){
+
+    const m = Math.floor(sec/60);
+
+    const s = Math.floor(sec%60);
+
+    return m+":"+(s<10?"0":"")+s;
+
+        }
     
     </script>
 
@@ -951,44 +1029,38 @@ button.addEventListener("click", () => {
 
 <div class="music-player" id="musicPlayer">
 
-    <div class="music-status">
+    <button class="music-button" id="musicButton">
+        ▶
+    </button>
 
-        <div class="equalizer">
-
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-
-        </div>
+    <div class="player-info">
 
         <span id="musicText">
-
-            Música pausada
-
+            Só com você
         </span>
+
+        <input
+            type="range"
+            id="progressBar"
+            min="0"
+            max="100"
+            value="0">
+
+        <div class="time">
+            <span id="currentTime">0:00</span>
+            <span id="duration">0:00</span>
+        </div>
 
     </div>
 
-
     <input
-
         class="volume"
-
         id="volumeControl"
-
         type="range"
-
         min="0"
-
         max="1"
-
         step="0.01"
-
-        value="0.5"
-
-    >
-
+        value="0.5">
 
     <button
 
