@@ -369,3 +369,4 @@
             document.body.appendChild(container);
             return container;
         }
+<script src="script2.js"></script>
