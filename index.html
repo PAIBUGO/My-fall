@@ -931,16 +931,15 @@
 </audio>
 
     <script>
-    const audio = document.getElementById('backgroundMusic');
-    const volume = document.getElementById('volume');
+    const audio = document.getElementById("backgroundMusic");
+const volume = document.getElementById("volumeControl"); 
 
-    // Define o volume inicial
-    audio.volume = 0.5;
+audio.volume = 0.5;
 
-    // Altera o volume quando o usuário mexer no controle
-    volume.addEventListener('input', function() {
-        audio.volume = this.value;
-    });
+volume.addEventListener("input", function () {
+    audio.volume = this.value;
+});
+    
     </script>
 
 
