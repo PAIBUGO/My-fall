@@ -1,5 +1,4 @@
 
-    <script>
         // Cursor personalizado
         let cursor = document.querySelector('.custom-cursor');
         
