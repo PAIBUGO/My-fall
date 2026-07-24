@@ -89,7 +89,7 @@
             
             // Animação central principal
             const mainTeAmo = document.createElement('div');
-            mainTeAmo.innerHTML = 'EU TE AMO ❤️';
+            mainTeAmo.innerHTML = 'TE AMO ❤️';
             mainTeAmo.style.cssText = `
                 position: fixed;
                 top: 50%;
@@ -143,7 +143,7 @@
             for (let i = 0; i < 15; i++) {
                 setTimeout(() => {
                     const miniTeAmo = document.createElement('div');
-                    miniTeAmo.innerHTML = '💖 EU TE AMO';
+                    miniTeAmo.innerHTML = '💖 TE AMO';
                     miniTeAmo.style.cssText = `
                         position: fixed;
                         left: ${Math.random() * 100}%;
@@ -368,438 +368,150 @@
             document.body.appendChild(container);
             return container;
         }
-@keyframes message-glow {
-            0% { text-shadow: 0 0 10px rgba(192, 192, 192, 0.3); }
-            100% { text-shadow: 0 0 20px rgba(192, 192, 192, 0.6), 0 0 30px rgba(255, 0, 64, 0.2); }
-        }
 
-        /* Botão dark theme */
-        .surprise-btn {
-            background: linear-gradient(45deg, var(--accent-red), var(--deep-red));
-            color: var(--white);
-            border: none;
-            padding: 25px 50px;
-            font-size: 1.4rem;
-            font-weight: 600;
-            border-radius: 60px;
-            cursor: pointer;
-            position: relative;
-            overflow: hidden;
-            transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-            margin: 40px 0;
-            box-shadow: 
-                0 15px 35px rgba(255, 0, 64, 0.4),
-                inset 0 1px 0 rgba(255, 255, 255, 0.2);
-            animation: btn-pulse 3s ease-in-out infinite;
-            border: 2px solid var(--neon-red);
-        }
+        // Ativar visualizador de som
+        setInterval(createSoundWave, 150);
 
-        .surprise-btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.3), transparent);
-            transition: left 0.5s;
-        }
+        // Sistema de conquistas (easter eggs)
+        let achievements = {
+            firstClick: false,
+            tripleClick: false,
+            longHover: false,
+            allPhotosHovered: false
+        };
 
-        .surprise-btn:hover::before {
-            left: 100%;
-        }
+        // Detectar hover longo
+        let hoverTimer;
+        document.querySelector('.love-card').addEventListener('mouseenter', () => {
+            hoverTimer = setTimeout(() => {
+                if (!achievements.longHover) {
+                    achievements.longHover = true;
+                    showAchievement('🏆 Romântico Contemplador!', 'Você admirou a carta por 3 segundos');
+                }
+            }, 3000);
+        });
 
-        .surprise-btn:hover {
-            transform: translateY(-5px) scale(1.05);
-            box-shadow: 
-                0 25px 50px rgba(255, 0, 64, 0.6),
-                0 0 30px var(--gold);
-        }
+        document.querySelector('.love-card').addEventListener('mouseleave', () => {
+            clearTimeout(hoverTimer);
+        });
 
-        @keyframes btn-pulse {
-            0%, 100% { box-shadow: 0 15px 35px rgba(255, 0, 64, 0.4); }
-            50% { box-shadow: 0 15px 35px rgba(255, 0, 64, 0.6), 0 0 20px var(--gold); }
-        }
+        // Detectar todas as fotos visitadas
+        let hoveredPhotos = new Set();
+        document.querySelectorAll('.photo-frame').forEach((frame, index) => {
+            frame.addEventListener('mouseenter', () => {
+                hoveredPhotos.add(index);
+                if (hoveredPhotos.size === 6 && !achievements.allPhotosHovered) {
+                    achievements.allPhotosHovered = true;
+                    showAchievement('📸 Guardião de Memórias!', 'Você visitou todas as nossas lembranças especiais');
+                }
+            });
+        });
 
-        /* Galeria de fotos - 3 por linha mobile-first */
-        .photo-gallery {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 15px;
-            margin: 60px 0;
-            perspective: 1000px;
-        }
-
-        .photo-frame {
-            aspect-ratio: 1;
-            background: linear-gradient(135deg, 
-                var(--card-black) 0%, 
-                var(--secondary-black) 50%, 
-                var(--card-black) 100%);
-            border-radius: 20px;
-            padding: 8px;
-            box-shadow: 
-                0 15px 35px rgba(0, 0, 0, 0.8),
-                inset 0 1px 0 rgba(255, 0, 64, 0.3),
-                0 0 25px rgba(255, 0, 64, 0.1);
-            position: relative;
-            overflow: hidden;
-            transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
-            animation: frame-float 5s ease-in-out infinite;
-            border: 1px solid rgba(255, 0, 64, 0.4);
-        }
-
-        .photo-frame:nth-child(1) { animation-delay: 0s; }
-        .photo-frame:nth-child(2) { animation-delay: 0.3s; }
-        .photo-frame:nth-child(3) { animation-delay: 0.6s; }
-        .photo-frame:nth-child(4) { animation-delay: 0.9s; }
-        .photo-frame:nth-child(5) { animation-delay: 1.2s; }
-        .photo-frame:nth-child(6) { animation-delay: 1.5s; }
-
-        @keyframes frame-float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-8px); }
-        }
-
-        .photo-frame img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            border-radius: 15px;
-            transition: all 0.4s ease;
-            filter: brightness(0.95) contrast(1.15) saturate(1.1);
-        }
-
-        .photo-frame::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(135deg, 
-                rgba(255, 0, 64, 0.2) 0%, 
-                transparent 50%, 
-                rgba(255, 0, 64, 0.2) 100%);
-            border-radius: 20px;
-            opacity: 0;
-            transition: all 0.4s ease;
-            z-index: 1;
-        }
-
-        .photo-frame:hover::before {
-            opacity: 1;
-            animation: photo-shine 1s ease-in-out;
-        }
-
-        @keyframes photo-shine {
-            0% { transform: translateX(-100%) skew(-15deg); }
-            100% { transform: translateX(100%) skew(-15deg); }
-        }
-
-        .photo-frame:hover {
-            transform: translateY(-10px) scale(1.05);
-            box-shadow: 
-                0 25px 50px rgba(0, 0, 0, 0.9),
-                0 0 40px rgba(255, 0, 64, 0.4),
-                inset 0 1px 0 rgba(255, 0, 64, 0.5);
-            border-color: rgba(255, 0, 64, 0.8);
-        }
-
-        .photo-frame:hover img {
-            filter: brightness(1.1) contrast(1.25) saturate(1.2);
-            transform: scale(1.02);
-        }
-
-        /* Texto de fallback melhorado */
-        .photo-frame[data-fallback] {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            font-size: 2rem;
-            color: var(--accent-red);
-            text-align: center;
-            background: linear-gradient(135deg, 
-                rgba(17, 17, 17, 0.9) 0%, 
-                rgba(26, 26, 26, 0.95) 50%, 
-                rgba(17, 17, 17, 0.9) 100%);
-        }
-
-        .photo-frame[data-fallback] small {
-            font-size: 0.7rem;
-            color: var(--silver);
-            margin-top: 8px;
-            opacity: 0.8;
-        }
-
-        /* Mensagem especial dark theme */
-        .special-message {
-            background: var(--glass-bg);
-            backdrop-filter: blur(25px);
-            border-radius: 25px;
-            padding: 50px;
-            margin: 60px 0;
-            border: 2px solid var(--glass-border);
-            opacity: 0;
-            transform: translateY(50px) scale(0.9);
-            transition: all 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .special-message::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, 
-                transparent, 
-                rgba(255, 0, 64, 0.1), 
-                rgba(255, 215, 0, 0.1), 
-                transparent);
-            animation: message-wave 4s ease-in-out infinite;
-        }
-
-        @keyframes message-wave {
-            0% { left: -100%; }
-            100% { left: 100%; }
-        }
-
-        .special-message.show {
-            opacity: 1;
-            transform: translateY(0) scale(1);
-            box-shadow: 
-                0 25px 50px rgba(0, 0, 0, 0.7),
-                0 0 40px rgba(255, 0, 64, 0.2);
-        }
-
-        .special-message h3 {
-            background: linear-gradient(45deg, var(--accent-red), var(--gold), var(--neon-red));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            font-size: 2.5rem;
-            font-weight: 700;
-            margin-bottom: 30px;
-            text-align: center;
-            animation: special-glow 2s ease-in-out infinite alternate;
-        }
-
-        @keyframes special-glow {
-            0% { filter: brightness(1); }
-            100% { filter: brightness(1.3) drop-shadow(0 0 10px var(--accent-red)); }
-        }
-
-        .special-message p {
-            color: var(--silver);
-            font-size: 1.3rem;
-            line-height: 1.8;
-            text-align: center;
-            font-weight: 300;
-        }
-
-        /* Footer dark theme */
-        .footer {
-            text-align: center;
-            padding: 60px 0;
-            color: var(--silver);
-            font-size: 1.3rem;
-            position: relative;
-        }
-
-        .footer::before {
-            content: '';
-            position: absolute;
-            top: -30px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 300px;
-            height: 2px;
-            background: linear-gradient(90deg, var(--accent-red), var(--gold), var(--accent-red));
-            border-radius: 1px;
-            animation: footer-line 3s ease-in-out infinite alternate;
-        }
-
-        @keyframes footer-line {
-            0% { width: 100px; opacity: 0.5; }
-            100% { width: 300px; opacity: 1; }
-        }
-
-        .heart-beat {
-            color: var(--accent-red);
-            animation: mega-heartbeat 1s ease-in-out infinite;
-            font-size: 2rem;
-            display: inline-block;
-            filter: drop-shadow(0 0 10px var(--accent-red));
-        }
-
-        @keyframes mega-heartbeat {
-            0%, 100% { transform: scale(1); }
-            25% { transform: scale(1.3) rotate(5deg); }
-            50% { transform: scale(1.1) rotate(-5deg); }
-            75% { transform: scale(1.2) rotate(3deg); }
-        }
-
-        /* Efeitos de explosão dark */
-        .heart-explosion {
-            position: fixed;
-            pointer-events: none;
-            z-index: 9999;
-            font-size: 2rem;
-            animation: heart-explode 2s ease-out forwards;
-        }
-
-        @keyframes heart-explode {
-            0% { 
-                transform: scale(0) rotate(0deg); 
-                opacity: 1; 
-            }
-            50% { 
-                transform: scale(1.5) rotate(180deg); 
-                opacity: 1; 
-            }
-            100% { 
-                transform: scale(0.5) rotate(360deg); 
-                opacity: 0; 
-            }
-        }
-
-        /* Loading dark theme */
-        .loading-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, var(--primary-black), var(--secondary-black));
-            z-index: 10000;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            animation: fadeOut 2s ease-in-out 3s forwards;
-        }
-
-        .loading-heart {
-            font-size: 4rem;
-            animation: loading-pulse 1s ease-in-out infinite;
-            color: var(--accent-red);
-            filter: drop-shadow(0 0 20px var(--accent-red));
-        }
-
-        @keyframes loading-pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.5) rotate(45deg); }
-        }
-
-        @keyframes fadeOut {
-            to { opacity: 0; visibility: hidden; }
-        }
-
-        /* Responsivo melhorado - Mobile First */
-        @media (max-width: 480px) {
-            .header h1 { 
-                font-size: 2.8rem; 
-                margin-bottom: 15px;
-            }
-            .header p { 
-                font-size: 1.1rem; 
-            }
-            .love-card { 
-                padding: 30px 20px; 
-                margin: 30px 0;
-                border-radius: 20px;
-            }
-            .love-card h2 { 
-                font-size: 2.2rem; 
-                margin-bottom: 25px;
-            }
-            .love-message { 
-                font-size: 1.1rem; 
-                margin-bottom: 30px;
-            }
-            .surprise-btn {
-                padding: 18px 35px;
-                font-size: 1.2rem;
-            }
-            .photo-gallery { 
-                grid-template-columns: repeat(3, 1fr);
-                gap: 10px; 
-                margin: 40px 0;
-            }
-            .photo-frame {
+        function showAchievement(title, description) {
+            const achievement = document.createElement('div');
+            achievement.innerHTML = `
+                <div style="font-size: 1.5rem; margin-bottom: 5px;">${title}</div>
+                <div style="font-size: 0.9rem; opacity: 0.8;">${description}</div>
+            `;
+            achievement.style.cssText = `
+                position: fixed;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                background: linear-gradient(45deg, #ff0040, #990026);
+                color: white;
+                padding: 20px 30px;
                 border-radius: 15px;
-                padding: 6px;
-            }
-            .photo-frame img {
-                border-radius: 10px;
-            }
-            .photo-frame[data-fallback] {
-                font-size: 1.5rem;
-            }
-            .photo-frame[data-fallback] small {
-                font-size: 0.6rem;
-                margin-top: 5px;
-            }
-            .special-message {
-                padding: 30px 20px;
-                border-radius: 20px;
-            }
-            .special-message h3 {
-                font-size: 2rem;
-            }
-            .special-message p {
-                font-size: 1.1rem;
-            }
+                text-align: center;
+                z-index: 9999;
+                box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5);
+                animation: achievement-popup 3s ease-in-out forwards;
+                backdrop-filter: blur(10px);
+                border: 2px solid rgba(255, 0, 64, 0.3);
+            `;
+            
+            document.body.appendChild(achievement);
+            setTimeout(() => achievement.remove(), 3000);
         }
 
-        @media (min-width: 481px) and (max-width: 768px) {
-            .header h1 { 
-                font-size: 3.5rem; 
-            }
-            .love-card { 
-                padding: 50px 35px; 
-            }
-            .love-card h2 { 
-                font-size: 2.8rem; 
-            }
-            .photo-gallery { 
-                grid-template-columns: repeat(3, 1fr);
-                gap: 20px; 
-            }
-        }
+        // Observador de interseção para animações
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
 
-        @media (min-width: 769px) and (max-width: 1024px) {
-            .photo-gallery { 
-                grid-template-columns: repeat(3, 1fr);
-                gap: 25px; 
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate-in');
+                }
+            });
+        }, observerOptions);
+
+        // Inicialização quando a página carrega
+        document.addEventListener('DOMContentLoaded', () => {
+            // Observar elementos para animação
+            const elements = document.querySelectorAll('.photo-frame, .special-message');
+            elements.forEach(el => observer.observe(el));
+            
+            // Criar partículas iniciais
+            for (let i = 0; i < 15; i++) {
+                setTimeout(() => createParticle(), i * 300);
             }
-        }
+            
+            // Primeira notificação
+            setTimeout(showNotification, 5000);
+            
+            // Efeito de entrada suave
+            document.body.style.opacity = '0';
+            setTimeout(() => {
+                document.body.style.transition = 'opacity 1s ease';
+                document.body.style.opacity = '1';
+            }, 100);
+        });
 
-        @media (min-width: 1025px) {
-            .photo-gallery { 
-                grid-template-columns: repeat(3, 1fr);
-                gap: 30px; 
-                max-width: 900px;
-                margin-left: auto;
-                margin-right: auto;
+        // Adicionar CSS para animações extras
+        const extraStyles = document.createElement('style');
+        extraStyles.textContent = `
+            @keyframes ultra-text {
+                0% { 
+                    opacity: 0; 
+                    transform: translate(-50%, -50%) scale(0) rotate(0deg); 
+                }
+                50% { 
+                    opacity: 1; 
+                    transform: translate(-50%, -50%) scale(1.2) rotate(180deg); 
+                }
+                100% { 
+                    opacity: 0; 
+                    transform: translate(-50%, -50%) scale(0) rotate(360deg); 
+                }
             }
-        }
-
-        /* Animações de entrada */
-        @keyframes slideDown {
-            from { opacity: 0; transform: translateY(-50px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        @keyframes slideUp {
-            from { opacity: 0; transform: translateY(50px); }
-            to { opacity: 1; transform: translateY(0); }
-                    }
-
-                        }
+            
+            @keyframes ripple-effect {
+                0% { 
+                    transform: scale(0); 
+                    opacity: 1; 
+                }
+                100% { 
+                    transform: scale(4); 
+                    opacity: 0; 
+                }
+            }
+            
+            @keyframes notification-slide {
+                0% { 
+                    transform: translateX(100%); 
+                    opacity: 0; 
+                }
+                10%, 90% { 
+                    transform: translateX(0); 
+                    opacity: 1; 
+                }
+                100% { 
+                    transform: translateX(100%); 
+                    opacity: 0; 
+                }
             }
             
             @keyframes sound-wave {
@@ -901,4 +613,4 @@
         document.head.appendChild(extraStyles);
 
         console.log('💖 Site de Amor carregado com sucesso! Feliz Dia dos Namorados! ✨');
-    </script>
+    
