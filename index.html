@@ -930,6 +930,19 @@
 
 </audio>
 
+    <script>
+    const audio = document.getElementById('backgroundMusic');
+    const volume = document.getElementById('volume');
+
+    // Define o volume inicial
+    audio.volume = 0.5;
+
+    // Altera o volume quando o usuário mexer no controle
+    volume.addEventListener('input', function() {
+        audio.volume = this.value;
+    });
+    </script>
+
 
 <!-- ================================================
      PLAYER
