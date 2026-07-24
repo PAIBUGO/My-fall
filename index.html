@@ -886,8 +886,7 @@
             height: 24px;
 
         }
-
-    }
+        }
 
 
     .volume {
@@ -900,23 +899,13 @@
 
         }
         .music-status {
-
-            display: none;
-
+           display: none;
         }
-
-
         .volume {
-
             width: 60px;
-
-        }
-
         }
         .music-player {
-
             right: 10px;
-
             bottom: 10px;
 
         }
@@ -949,78 +938,6 @@
 
 </audio>
 
-    <script>
-    const audio = document.getElementById("backgroundMusic");
-
-const playBtn = document.getElementById("musicButton");
-const progress = document.getElementById("progressBar");
-const current = document.getElementById("currentTime");
-const duration = document.getElementById("duration");
-const volume = document.getElementById("volumeControl");
-
-audio.volume = 0.5;
-
-// Play e Pause
-playBtn.onclick = () => {
-
-    if(audio.paused){
-        audio.play();
-    }else{
-        audio.pause();
-    }
-
-};
-
-// Atualiza botão
-audio.onplay = ()=>{
-    playBtn.innerHTML="⏸";
-}
-
-audio.onpause = ()=>{
-    playBtn.innerHTML="▶";
-}
-
-// Duração
-audio.onloadedmetadata = ()=>{
-    duration.textContent = format(audio.duration);
-}
-
-// Barra de progresso
-audio.ontimeupdate = ()=>{
-
-    progress.value = (audio.currentTime/audio.duration)*100;
-
-    current.textContent = format(audio.currentTime);
-
-}
-
-// Arrastar barra
-progress.oninput = ()=>{
-
-    audio.currentTime =
-        progress.value/100*audio.duration;
-
-}
-
-// Volume
-volume.oninput = ()=>{
-
-    audio.volume = volume.value;
-
-}
-
-// Formatar tempo
-function format(sec){
-
-    const m = Math.floor(sec/60);
-
-    const s = Math.floor(sec%60);
-
-    return m+":"+(s<10?"0":"")+s;
-
-        }
-    
-    </script>
 
 
 <!-- ================================================
@@ -1061,22 +978,6 @@ function format(sec){
         max="1"
         step="0.01"
         value="0.5">
-
-    <button
-
-        class="music-button"
-
-        id="musicButton"
-
-        type="button"
-
-    >
-
-        🎵
-
-    </button>
-
-</div>
     
     <!-- Overlay de loading -->
     <div class="loading-overlay">
@@ -1157,6 +1058,80 @@ Você é parte da minha felicidade, das minhas orações, dos meus planos e da m
             <p>FELIZ NOSSO DIA, MY LOVE! 💑</p>
         </footer>
     </div>
+
+    
+    <script>
+    const audio = document.getElementById("backgroundMusic");
+
+const playBtn = document.getElementById("musicButton");
+const progress = document.getElementById("progressBar");
+const current = document.getElementById("currentTime");
+const duration = document.getElementById("duration");
+const volume = document.getElementById("volumeControl");
+
+audio.volume = 0.5;
+
+// Play e Pause
+playBtn.onclick = () => {
+
+    if(audio.paused){
+        audio.play();
+    }else{
+        audio.pause();
+    }
+
+};
+
+// Atualiza botão
+audio.onplay = ()=>{
+    playBtn.innerHTML="⏸";
+}
+
+audio.onpause = ()=>{
+    playBtn.innerHTML="▶";
+}
+
+// Duração
+audio.onloadedmetadata = ()=>{
+    duration.textContent = format(audio.duration);
+}
+
+// Barra de progresso
+audio.ontimeupdate = ()=>{
+
+    progress.value = (audio.currentTime/audio.duration)*100;
+
+    current.textContent = format(audio.currentTime);
+
+}
+
+// Arrastar barra
+progress.oninput = ()=>{
+
+    audio.currentTime =
+        progress.value/100*audio.duration;
+
+}
+
+// Volume
+volume.oninput = ()=>{
+
+    audio.volume = volume.value;
+
+}
+
+// Formatar tempo
+function format(sec){
+
+    const m = Math.floor(sec/60);
+
+    const s = Math.floor(sec%60);
+
+    return m+":"+(s<10?"0":"")+s;
+
+        }
+    
+    </script>
 
     <script>
         // Cursor personalizado
