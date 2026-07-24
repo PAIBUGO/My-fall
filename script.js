@@ -798,3 +798,107 @@
             from { opacity: 0; transform: translateY(50px); }
             to { opacity: 1; transform: translateY(0); }
                     }
+
+                        }
+            }
+            
+            @keyframes sound-wave {
+                0% { height: 10px; }
+                100% { height: 50px; }
+            }
+            
+            @keyframes te-amo-main {
+                0% { 
+                    opacity: 0; 
+                    transform: translate(-50%, -50%) scale(0) rotate(0deg); 
+                    background-position: 0% 50%;
+                }
+                20% { 
+                    opacity: 1; 
+                    transform: translate(-50%, -50%) scale(1.5) rotate(5deg); 
+                    background-position: 100% 50%;
+                }
+                40% { 
+                    transform: translate(-50%, -50%) scale(1.2) rotate(-3deg); 
+                    background-position: 0% 50%;
+                }
+                60% { 
+                    transform: translate(-50%, -50%) scale(1.3) rotate(2deg); 
+                    background-position: 100% 50%;
+                }
+                80% { 
+                    transform: translate(-50%, -50%) scale(1.1) rotate(0deg); 
+                    background-position: 0% 50%;
+                }
+                100% { 
+                    opacity: 0; 
+                    transform: translate(-50%, -50%) scale(0.5) rotate(0deg); 
+                    background-position: 100% 50%;
+                }
+            }
+            
+            @keyframes te-amo-float {
+                0% { 
+                    opacity: 0; 
+                    transform: scale(0) rotate(0deg); 
+                }
+                20% { 
+                    opacity: 1; 
+                    transform: scale(1.2) rotate(10deg); 
+                }
+                50% { 
+                    opacity: 1; 
+                    transform: scale(1) rotate(-5deg) translateY(-20px); 
+                }
+                80% { 
+                    opacity: 1; 
+                    transform: scale(1.1) rotate(5deg) translateY(-40px); 
+                }
+                100% { 
+                    opacity: 0; 
+                    transform: scale(0.5) rotate(0deg) translateY(-60px); 
+                }
+            }
+            
+            @keyframes te-amo-rain {
+                0% { 
+                    opacity: 0; 
+                    transform: translateY(-50px) rotate(0deg) scale(0.8); 
+                }
+                10% { 
+                    opacity: 1; 
+                    transform: translateY(0px) rotate(10deg) scale(1); 
+                }
+                90% { 
+                    opacity: 1; 
+                    transform: translateY(calc(100vh - 100px)) rotate(-10deg) scale(0.9); 
+                }
+                100% { 
+                    opacity: 0; 
+                    transform: translateY(100vh) rotate(0deg) scale(0.5); 
+                }
+            }
+            
+            @keyframes love-pulse {
+                0% { 
+                    opacity: 0; 
+                    transform: scale(0.8); 
+                }
+                50% { 
+                    opacity: 1; 
+                    transform: scale(1.2); 
+                }
+                100% { 
+                    opacity: 0; 
+                    transform: scale(1.5); 
+                }
+            }
+            
+            .animate-in {
+                animation: slideUp 0.8s ease-out forwards;
+            }
+        `;
+        document.head.appendChild(extraStyles);
+
+        console.log('💖 Site de Amor carregado com sucesso! Feliz Dia dos Namorados! ✨');
+    </script>
