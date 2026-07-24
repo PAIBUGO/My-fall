@@ -889,31 +889,33 @@
         }
 
 
-    .volume {
 
-        width: 75px;
+.volume{
+    width:55px;
+    accent-color:var(--red);
+    cursor:pointer;
+}
 
-        accent-color: var(--red);
+.music-player{
+    position:fixed;
+    right:15px;
+    bottom:15px;
 
-        cursor: pointer;
+    width:260px;      /* largura menor */
+    padding:8px 12px; /* menos espaço interno */
 
-        }
-        .music-status {
-           display: none;
-        }
-        .volume {
-            width: 60px;
-        }
-        .music-player {
-            right: 10px;
-            bottom: 10px;
+    border-radius:18px;
+}
 
-        }
-        .player-info{
+.player-info{
     display:flex;
     flex-direction:column;
-    width:220px;
-    gap:6px;
+    width:150px;      /* antes era 220px */
+    gap:4px;
+}
+
+#musicText{
+    font-size:.8rem;
 }
 
 #progressBar{
@@ -926,8 +928,22 @@
     display:flex;
     justify-content:space-between;
     color:#bbb;
-    font-size:.75rem;
-            }
+    font-size:.65rem;
+}
+
+.music-button{
+    width:40px;
+    height:40px;
+    font-size:1rem;
+        }
+
+        }
+        .music-status {
+           display: none;
+        }
+        .volume {
+            width: 60px;
+        }
     </style>
     
 </head>
